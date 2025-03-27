@@ -1,0 +1,197 @@
+[
+  {
+  "DESADV": [
+    {
+      "Partner name": 2920,
+      "Generic Message": "ASN_GILM",
+      "Additional Internal Receiver Message Type": "SEEDESADV",
+      "Additional Internal Receiver Message Version": "ASN_MACS",
+      "Comments": "Non-Japanese suppliers only!"
+    },
+    {
+      "Partner name": 2920,
+      "Generic Message": "ASN_1",
+      "Additional Internal Receiver Message Type": ["SEEDESADV", "SEEDESADV"],
+      "Additional Internal Receiver Message Version": ["ASN_MACS", "ASN_GILM"],
+      "Comments": "Japanese suppliers only!"
+    },
+    {
+      "Partner name": 2921,
+      "Generic Message": "ASN_SYNPIX",
+      "Additional Internal Receiver Message Type": "SEEDESADV",
+      "Additional Internal Receiver Message Version": "ASN_MACS"
+    },
+    {
+      "Partner name": 2922,
+      "Generic Message": "ASN_GILM",
+      "Additional Internal Receiver Message Type": "SEEDESADV",
+      "Additional Internal Receiver Message Version": "ASN_MACS",
+      "Comments": "Non-Japanese suppliers only!"
+    },
+    {
+      "Partner name": 2922,
+      "Generic Message": "ASN_1",
+      "Additional Internal Receiver Message Type": ["SEEDESADV", "SEEDESADV"],
+      "Additional Internal Receiver Message Version": ["ASN_MACS", "ASN_GILM"],
+      "Comments": "Japanese suppliers only!"
+    },
+    {
+      "Partner name": 2924,
+      "Generic Message": "ASN",
+      "Comments": "Non-Japanese suppliers only!"
+    },
+    {
+      "Partner name": 2924,
+      "Generic Message": "ASN_1",
+      "Comments": "Japanese suppliers only!"
+    },
+    {
+      "Partner name": 7876,
+      "Generic Message": "ASN",
+      "Additional Internal Receiver Message Type": "SEEDESADV",
+      "Additional Internal Receiver Message Version": "MACSSMK"
+    },
+    {
+      "Partner name": 8417,
+      "Generic Message": "ASN",
+      "Additional Internal Receiver Message Type": "SEEDESADV",
+      "Additional Internal Receiver Message Version": "MACSSMK"
+    }
+  ]
+}
+,
+{
+  "INVOICE": [
+    {
+      "Parma": 2920,
+      "EDIFACT_INVOIC_D07A": "SUPINV",
+      "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+      "WEBEDI": "SUPINV"
+    },
+    {
+      "Parma": 2922,
+      "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+      "WEBEDI": "GLOBAL_PI"
+    },
+    {
+      "Parma": 2924,
+      "EDIFACT_INVOIC_D07A": "SUPINV",
+      "EDIFACT_INVOIC_D03A": "GLOBAL_INH",
+      "WEBEDI": "SUPINV"
+    },
+    {
+      "Parma": 7876,
+      "EDIFACT_INVOIC_D07A": "SUPINV",
+      "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+      "WEBEDI": "NOT ALLOWED"
+    },
+    {
+      "Parma": 8374,
+      "EDIFACT_INVOIC_D07A": "SUPINV",
+      "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+      "WEBEDI": "SUPINV",
+      "X12_810": "GLOBAL_PINA"
+    },
+    {
+      "Parma": 8417,
+      "EDIFACT_INVOIC_D07A": "SUPINV",
+      "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+      "WEBEDI": "NOT ALLOWED"
+    }
+  ]
+}
+,
+
+{
+"CONTACTS" : [
+  {
+    "PARMA": 2920,
+    "Contact": {
+      "Plant Name": "UD Trucks Corporation",
+      "Emails": [
+        "akihiro.hayama@udtrucks.com",
+        "Support.production.management@udtrucks.com"
+      ],
+      "Invoice Emails": [
+        "akihiro.hayama@udtrucks.com",
+        "Api.CG-P2P@udtrucks.com"
+      ]
+    }
+  },
+  {
+    "PARMA": 2921,
+    "Contact": {
+      "Plant Name": "UD Trucks Corporation",
+      "Emails": ["masashi.hisataka@udtrucks.com"],
+      "Invoice Emails": [
+        "masashi.hisataka@udtrucks.com",
+        "Api.CG-P2P@udtrucks.com"
+      ]
+    }
+  },
+  {
+    "PARMA": 2922,
+    "Contact": {
+      "Plant Name": "UD Trucks Corporation",
+      "Emails": [
+        "miho.sakata@udtrucks.com",
+        "hiroyuki.mizunuma@udtrucks.com",
+        "Support.production.management@udtrucks.com"
+      ],
+      "Invoice Emails": [
+        "miho.sakata@udtrucks.com",
+        "hiroyuki.mizunuma@udtrucks.com",
+        "Api.CG-P2P@udtrucks.com"
+      ]
+    }
+  },
+  {
+    "PARMA": 2924,
+    "Contact": {
+      "Plant Name": "UD Trucks Corporation",
+      "Emails": ["Support.LSJAPAN.edi@udtrucks.com"],
+      "Invoice Emails": ["Support.LSJAPAN.edi@udtrucks.com"]
+    }
+  },
+  {
+    "PARMA": 7876,
+    "Contact": {
+      "Plant Name": "Thai-Swedish Assembly Co., Ltd",
+      "Emails": ["watcharin.sangnoi@udtrucks.com"],
+      "Invoice Emails": [
+        "Adm.EDIgroup@udtrucks.com",
+        "sudaporn.thanacharoenkiat@udtrucks.com",
+        "maturos.kaewton@udtrucks.com",
+        "patcharee.thienchai@udtrucks.com",
+        "sittikorn.maneein@udtrucks.com"
+      ]
+    }
+  },
+  {
+    "PARMA": 8374,
+    "Contact": {
+      "Plant Name": "UD Trucks Corporation",
+      "Emails": ["youhei.kawada@udtrucks.com"],
+      "Invoice Emails": [
+        "youhei.kawada@udtrucks.com",
+        "Api.CG-P2P@udtrucks.com"
+      ]
+    }
+  },
+  {
+    "PARMA": 8417,
+    "Contact": {
+      "Plant Name": "TMBP Limited",
+      "Emails": ["watcharin.sangnoi@udtrucks.com"],
+      "Invoice Emails": [
+        "Adm.EDIgroup@udtrucks.com",
+        "sudaporn.thanacharoenkiat@udtrucks.com",
+        "maturos.kaewton@udtrucks.com",
+        "patcharee.thienchai@udtrucks.com",
+        "sittikorn.maneein@udtrucks.com"
+      ]
+    }
+  }
+]
+}
+]

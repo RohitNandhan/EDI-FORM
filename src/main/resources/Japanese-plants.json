@@ -1,0 +1,96 @@
+[
+    {
+      "Parma": 2920,
+      "DESADV": {
+        "Generic Message": "ASN_1",
+        "Additional Internal Receiver Message Type": ["SEEDESADV", "SEEDESADV"],
+        "Additional Internal Receiver Message Version": ["ASN_MACS", "ASN_GILM"],
+       
+      },
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": [
+          "akihiro.hayama@udtrucks.com",
+          "Support.production.management@udtrucks.com"
+        ]
+        
+      }
+    },
+    {
+      "Parma": 2921,
+      "DESADV": [
+        {
+          "Generic Message": "ASN_SYNPIX",
+          "Additional Internal Receiver Message Type": "SEEDESADV",
+          "Additional Internal Receiver Message Version": "ASN_MACS"
+        }
+      ],
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": ["masashi.hisataka@udtrucks.com"]
+      }
+    },
+    {
+      "Parma": 2922,
+      "DESADV": {
+        "Generic Message": "ASN_1",
+        "Additional Internal Receiver Message Type": ["SEEDESADV", "SEEDESADV"],
+        "Additional Internal Receiver Message Version": ["ASN_MACS", "ASN_GILM"],
+       
+      },
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": [
+          "miho.sakata@udtrucks.com",
+          "hiroyuki.mizunuma@udtrucks.com",
+          "Support.production.management@udtrucks.com"
+        ]
+      }
+    },
+    {
+      "Parma": 2924,
+      "DESADV": [
+        { "Generic Message": "ASN", "Comments": "Non-Japanese suppliers only!" },
+        { "Generic Message": "ASN_1", "Comments": "Japanese suppliers only!" }
+      ],
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": ["Support.LSJAPAN.edi@udtrucks.com"]
+      }
+    },
+    {
+      "Parma": 7876,
+      "DESADV": {
+        "Generic Message": "ASN",
+        "Additional Internal Receiver Message Type": "SEEDESADV",
+        "Additional Internal Receiver Message Version": "MACSSMK"
+      },
+      "Contact": {
+        "Plant Name": "Thai-Swedish Assembly Co., Ltd",
+        "Emails": ["watcharin.sangnoi@udtrucks.com"]
+      }
+    },
+    {
+      "Parma": 8374,
+      "DESADV": [],
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": ["youhei.kawada@udtrucks.com"]
+      }
+    },
+    {
+      "Parma": 8417,
+      "DESADV": [
+        {
+          "Generic Message": "ASN",
+          "Additional Internal Receiver Message Type": "SEEDESADV",
+          "Additional Internal Receiver Message Version": "MACSSMK"
+        }
+      ],
+      "Contact": {
+        "Plant Name": "TMBP Limited",
+        "Emails": ["watcharin.sangnoi@udtrucks.com"]
+      }
+    }
+  ]
+  

@@ -1,0 +1,197 @@
+[
+    {
+      "Parma": 2920,
+      "DESADV": [
+        {
+          "Generic Message": "ASN_GILM",
+          "Additional Internal Receiver Message Type": "SEEDESADV",
+          "Additional Internal Receiver Message Version": "ASN_MACS",
+          "Comments": "Non-Japanese"
+        },
+        {
+          "Generic Message": "ASN_1",
+          "Additional Internal Receiver Message Type": ["SEEDESADV", "SEEDESADV"],
+          "Additional Internal Receiver Message Version": ["ASN_MACS", "ASN_GILM"],
+          "Comments": "Japanese"
+        }
+      ],
+      "INVOICE": {
+        "EDIFACT_INVOIC_D07A": "SUPINV",
+        "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+        "WEBEDI": "SUPINV"
+      },
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": [
+          "akihiro.hayama@udtrucks.com",
+          "Support.production.management@udtrucks.com"
+        ],
+        "Invoice Emails": [
+          "akihiro.hayama@udtrucks.com",
+          "Api.CG-P2P@udtrucks.com"
+        ]
+      }
+    },
+    {
+      "Parma": 2921,
+      "DESADV": [
+        {
+          
+          "Generic Message": "ASN_SYNPIX",
+          "Additional Internal Receiver Message Type": "SEEDESADV",
+          "Additional Internal Receiver Message Version": "ASN_MACS"
+        }
+      ],
+      "INVOICE": {},
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": ["masashi.hisataka@udtrucks.com"],
+        "Invoice Emails": ["Na"
+        ]
+      }
+    },
+    {
+      "Parma": 2922,
+      "DESADV": [
+        {
+          "Generic Message": "ASN_GILM",
+          "Additional Internal Receiver Message Type": "SEEDESADV",
+          "Additional Internal Receiver Message Version": "ASN_MACS",
+          "Comments": "Non-Japanese"
+        },
+        {
+          "Generic Message": "ASN_1",
+          "Additional Internal Receiver Message Type": ["SEEDESADV", "SEEDESADV"],
+          "Additional Internal Receiver Message Version": ["ASN_MACS", "ASN_GILM"],
+          "Comments": "Japanese"
+        }
+      ],
+      "INVOICE": {
+        "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+        "WEBEDI": "GLOBAL_PI"
+      },
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": [
+          "miho.sakata@udtrucks.com",
+          "hiroyuki.mizunuma@udtrucks.com",
+          "Support.production.management@udtrucks.com"
+        ],
+        "Invoice Emails": [
+          "miho.sakata@udtrucks.com",
+          "hiroyuki.mizunuma@udtrucks.com",
+          "Api.CG-P2P@udtrucks.com"
+        ]
+      }
+    },
+    {
+      "Parma": 2924,
+      "DESADV": [
+        { "Generic Message": "ASN", "Comments": "Non-Japanese" },
+        { "Generic Message": "ASN_1", "Comments": "Japanese" }
+      ],
+      "INVOICE": {
+        "EDIFACT_INVOIC_D07A": "SUPINV",
+        "EDIFACT_INVOIC_D03A": "GLOBAL_INH",
+        "WEBEDI": "SUPINV"
+      },
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": ["Support.LSJAPAN.edi@udtrucks.com"],
+        "Invoice Emails": ["Support.LSJAPAN.edi@udtrucks.com"]
+      }
+    },
+    {
+      "Parma": 7876,
+      "DESADV": [
+        {
+          "Generic Message": "ASN",
+          "Additional Internal Receiver Message Type": "SEEDESADV",
+          "Additional Internal Receiver Message Version": "MACSSMK"
+        }
+      ],
+      "INVOICE": {
+        "EDIFACT_INVOIC_D07A": "SUPINV",
+        "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+        "WEBEDI": ""
+      },
+      "Contact": {
+        "Plant Name": "Thai-Swedish Assembly Co., Ltd",
+        "Emails": ["watcharin.sangnoi@udtrucks.com"],
+        "Invoice Emails": [
+          "Adm.EDIgroup@udtrucks.com",
+          "sudaporn.thanacharoenkiat@udtrucks.com",
+          "maturos.kaewton@udtrucks.com",
+          "patcharee.thienchai@udtrucks.com",
+          "sittikorn.maneein@udtrucks.com"
+        ]
+      }
+    },
+    {
+      "Parma": 8374,
+      "DESADV": [
+        {
+          "Generic Message": "ASN"
+          
+        }
+      ],
+      "INVOICE": {
+        "EDIFACT_INVOIC_D07A": "SUPINV",
+        "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+        "WEBEDI": "SUPINV",
+        "X12_810": "GLOBAL_PINA"
+      },
+      "Contact": {
+        "Plant Name": "UD Trucks Corporation",
+        "Emails": ["youhei.kawada@udtrucks.com"],
+        "Invoice Emails": [
+          "youhei.kawada@udtrucks.com",
+          "Api.CG-P2P@udtrucks.com"
+        ]
+      }
+    },
+    {
+      "Parma": 8417,
+      "DESADV": [
+        {
+          "Generic Message": "ASN",
+          "Additional Internal Receiver Message Type": "SEEDESADV",
+          "Additional Internal Receiver Message Version": "MACSSMK"
+        }
+      ],
+      "INVOICE": {
+        "EDIFACT_INVOIC_D07A": "SUPINV",
+        "EDIFACT_INVOIC_D03A": "GLOBAL_PI",
+        "WEBEDI": ""
+      },
+      "Contact": {
+        "Plant Name": "TMBP Limited",
+        "Emails": ["watcharin.sangnoi@udtrucks.com"],
+        "Invoice Emails": [
+          "Adm.EDIgroup@udtrucks.com",
+          "sudaporn.thanacharoenkiat@udtrucks.com",
+          "maturos.kaewton@udtrucks.com",
+          "patcharee.thienchai@udtrucks.com",
+          "sittikorn.maneein@udtrucks.com"
+        ]
+      }
+    },
+	{
+      "Parma": 8431,
+      "DESADV": [
+        {
+          "Generic Message": "ASN"
+          
+        }
+      ],
+      "INVOICE": {},
+      "Contact": {
+        "Plant Name": "Volvo Group Singapore Ltd",
+        "Emails": ["Support.EDI.MIM.Singapore@udtrucks.com"],
+        "Invoice Emails": [
+          "Na"
+        ]
+      }
+    }
+  ]
+  
