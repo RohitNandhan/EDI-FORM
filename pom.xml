@@ -13,6 +13,49 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+ <build>
+
+ <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.json</include>
+            </includes>
+        </resource>
+    </resources>
+    <plugins>
+        <!-- JAR Plugin to Specify Main Class -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>com.ronan.jswing.EDIImplForm4</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+
+        <!-- Shade Plugin to Create Fat JAR with Dependencies -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.4.1</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+
     <dependencies>
     <!-- Jackson Core -->
     <dependency>
