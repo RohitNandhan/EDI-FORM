@@ -21,6 +21,7 @@ import com.ronan.dto.PlantDTO;
 import com.ronan.dto.PlantDisplayDTOCopy;
 import com.ronan.dto.PlantFormDTO;
 import com.ronan.entities.PARMA;
+import com.ronan.mailService.EmailSender;
 import com.ronan.repositories.JsonReader;
 
 public class EDIImplForm4 {
@@ -145,8 +146,11 @@ public class EDIImplForm4 {
                 parmaList.clear();
                 isJapanese = false;
                 editype = EDITYPE.TraditionalEDI;
+                EmailSender.sendEmail();
 
-                JOptionPane.showMessageDialog(frame, "Form Cleared!", "Submission Details", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Mail sent!", "Submission Details", JOptionPane.INFORMATION_MESSAGE);
+           
+                // JOptionPane.showMessageDialog(frame, "Form Cleared!", "Submission Details", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
