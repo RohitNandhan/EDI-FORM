@@ -204,6 +204,7 @@ private static void showResultDialog(JFrame parent, String result) {
     textArea.setText(""); // Clear previous content
     textArea.append(result); // Append new result
 
+
     // Display the new dialog
     dialog.setVisible(true);
 }

@@ -3,26 +3,10 @@ import win32com.client
 import os
 import re
 
-def remove_duplicate_contacts(contacts):
-    """Removes duplicate email addresses from the contacts string."""
-    if not contacts:
-        return ""
-
-    # Split the contacts by `;`, strip spaces, and add them to a set for uniqueness
-    unique_contacts = set(email.strip() for email in contacts.split(";") if email.strip())
-
-    # Join back into a single string separated by `; `
-    return "; ".join(unique_contacts)
-
-def format_plants(plant_details):
-    """Formats plant details string into a line-by-line list."""
-    plant_list = plant_details.split(";")  # Double spaces used as separator
-    return "<br>".join(plant_list)
-
-def send_email(recipient, parma_id, parma_name, contacts, user_id, first_name, last_name, attachment_path,plant_details):
+def send_email(recipient, parma_id, parma_name, contacts, user_id, first_name, last_name, attachment_path):
     try:
         # Set the correct path for the email template
-        template_path = r"C:\Rohit P\PLE Cloning\edi-impl-app\mail templates\Additional UD WebEDI Delivery Schedule and Despatch Advice in production2.html"
+        template_path = r"C:\Rohit P\PLE Cloning\edi-impl-app\mail templates\Additional UD WebEDI Delivery Schedule and Despatch Advice in production.html"
 
         # Check if the file exists
         if not os.path.exists(template_path):
@@ -40,19 +24,13 @@ def send_email(recipient, parma_id, parma_name, contacts, user_id, first_name, l
         # Remove extra empty lines caused by replacements
         email_body = re.sub(r"\n\s*\n", "\n", email_body)
 
-        # Remove duplicate emails
-        contacts = remove_duplicate_contacts(contacts)
-        
-        formated_plants=format_plants(plant_details)
-
         # Replace placeholders dynamically
         email_body = email_body.replace("{parma_id}", parma_id) \
                                .replace("{parma_name}", parma_name) \
                                .replace("{contacts}", contacts) \
                                .replace("{user_id}", user_id) \
                                .replace("{first_name}", first_name) \
-                               .replace("{last_name}", last_name) \
-                               .replace("{Plant_details}", formated_plants)
+                               .replace("{last_name}", last_name)
 
         # Connect to Outlook
         outlook = win32com.client.Dispatch("Outlook.Application")
@@ -69,7 +47,7 @@ def send_email(recipient, parma_id, parma_name, contacts, user_id, first_name, l
         mail.To = recipient
         if contacts:
             mail.CC = contacts
-        
+        # mail.To = f"{recipient}; {contacts}"
         mail.Subject = f"{parma_id} - {parma_name} -- Additional UD WebEDI Delivery Schedule and Despatch Advice in production"
         mail.HTMLBody = email_body  
 

@@ -1,0 +1,84 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "EDIImpl_model1",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImpl_model1",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.ronan.Main",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EDIImplForm",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImplForm",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EDIImplForm2",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImplForm2",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EDIImplForm3",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImplForm3",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EDIImplForm4",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImplForm4",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EDIImplForm5",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImplForm5",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EmailSender",
+            "request": "launch",
+            "mainClass": "com.ronan.mailService.EmailSender",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EmailSender2",
+            "request": "launch",
+            "mainClass": "com.ronan.mailService.EmailSender2",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "Main(1)",
+            "request": "launch",
+            "mainClass": "com.ronan.parsers.Main",
+            "projectName": "edi-impl"
+        }
+    ]
+}

@@ -47,8 +47,16 @@ public class PlantDTO {
         return contact;
     }
 
+    public String getContactString(){
+        return contact.getEmailString();
+    }
+
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public String getPlantName(){
+        return contact.getPlantName();
     }
 
     @Override

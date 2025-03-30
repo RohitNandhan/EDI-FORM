@@ -1,6 +1,9 @@
 package com.ronan.dto;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +14,7 @@ public class Contact {
 
     @JsonProperty("Emails")
     private List<String> emails;
+   
 
     @JsonProperty("Invoice Emails")
     private List<String> invoiceEmails;
@@ -28,9 +32,17 @@ public class Contact {
         return emails;
     }
 
+    public String getEmailString(){
+        return emails.stream().collect(Collectors.joining(";"));
+    }
+
     public void setEmails(List<String> emails) {
         this.emails = emails;
     }
+
+    // public void setEmails(List<String> emails) {
+    //     this.emails = emails;
+    // }
 
     public List<String> getInvoiceEmails() {
         return invoiceEmails;
