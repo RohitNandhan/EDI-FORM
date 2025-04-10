@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EDIImplForm7",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImplForm7",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EmailSender3",
+            "request": "launch",
+            "mainClass": "com.ronan.mailService.EmailSender3",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
+            "name": "EDIImplForm6",
+            "request": "launch",
+            "mainClass": "com.ronan.jswing.EDIImplForm6",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
             "name": "EDIImpl_model1",
             "request": "launch",
             "mainClass": "com.ronan.jswing.EDIImpl_model1",

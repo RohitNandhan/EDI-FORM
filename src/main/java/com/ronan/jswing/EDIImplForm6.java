@@ -16,7 +16,7 @@ import com.ronan.entities.Plant;
 import com.ronan.mailService.EmailSender;
 import com.ronan.repositories.JsonReader;
 
-public class EDIImplForm5 {
+public class EDIImplForm6 {
 
     private static List<PARMA> parmaList = new ArrayList<>();
     private static boolean isJapanese;
@@ -33,21 +33,26 @@ public class EDIImplForm5 {
     public static void createForm() {
         // Create Frame
         JFrame frame = new JFrame("EDI IMPL Form");
-        frame.setSize(450, 400);
+        
+        frame.setSize(450, 350);
+
+
+        JPanel titleBar = new JPanel();
+        titleBar.setBackground(new Color(70, 130, 180)); // Set title bar color
+        titleBar.setPreferredSize(new Dimension(frame.getWidth(), 40));
+        titleBar.setLayout(new BorderLayout());
+
+        JLabel titleLabel = new JLabel("EDI----IMPL Form");
+        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+        frame.setLocation(500, 250);
+        // frame.setLayout();
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
-        // JPanel panel = new JPanel() {
-        //     @Override
-        //     protected void paintComponent(Graphics g) {
-        //         super.paintComponent(g);
-        //         Graphics2D g2d = (Graphics2D) g;
-        //         GradientPaint gp = new GradientPaint(0, 0, Color.CYAN, getWidth(), getHeight(), Color.MAGENTA);
-        //         g2d.setPaint(gp);
-        //         g2d.fillRect(0, 0, getWidth(), getHeight());
-        //     }
-        // };
-        // panel.setLayout(null);
-        // frame.setContentPane(panel);
+        
 
         // Supplier ID
         JLabel supplierIdLabel = new JLabel("Supplier ID:");
@@ -117,60 +122,119 @@ public class EDIImplForm5 {
         frame.add(ediDropdown);
 
         // Submit Button
-        JButton submitButton = new JButton("Submit");
-        submitButton.setBounds(100, 250, 80, 25);
-        frame.add(submitButton);
+        // JButton submitButton = new JButton("Submit");
+        // submitButton.setBounds(100, 250, 80, 25);
+        // frame.add(submitButton);
+
+        JButton saveButton = new JButton("Save");
+        saveButton.setBounds(100, 250, 80, 25);
+        frame.add(saveButton);
+
+        // View Info Button
+        JButton viewInfoButton = new JButton("View Info");
+        viewInfoButton.setBounds(200, 250, 100, 25);
+        viewInfoButton.setEnabled(false);
+        frame.add(viewInfoButton);
+
+        // Mail Button
+        JButton mailButton = new JButton("Send Mail");
+        mailButton.setBounds(320, 250, 100, 25);
+        mailButton.setEnabled(false);
+        frame.add(mailButton);
 
         // Clear Button
         JButton clearButton = new JButton("Clear");
-        clearButton.setBounds(200, 250, 70, 25);
+        clearButton.setBounds(320, 190, 70, 25);
         frame.add(clearButton);
 
         // New Mail Button
-        JButton mailButton = new JButton("Send Mail");
-        mailButton.setBounds(290, 250, 100, 25);
-        frame.add(mailButton);
+        // JButton mailButton = new JButton("Send Mail");
+        // mailButton.setBounds(290, 250, 100, 25);
+        // frame.add(mailButton);
 
-        // Submit Button Action
-        submitButton.addActionListener(e -> {
+
+        saveButton.addActionListener(e -> {
             parmaList.clear();
-            StringBuilder selectedPlants = new StringBuilder();
-
             for (JCheckBox plant : plants) {
                 if (plant.isSelected()) {
-                    String pl = plant.getText();
-                    selectedPlants.append(pl).append(", ");
-                    parmaList.add(new PARMA(Integer.parseInt(pl)));
+                    parmaList.add(new PARMA(Integer.parseInt(plant.getText())));
                 }
             }
-
-            if (selectedPlants.length() > 0) {
-                selectedPlants.setLength(selectedPlants.length() - 2);
-            } else {
-                selectedPlants.append("None");
-            }
-
-            String type = ediDropdown.getSelectedItem().toString();
-            editype = EDITYPE.valueOf(type);
+        
+            editype = EDITYPE.valueOf(ediDropdown.getSelectedItem().toString());
             isJapanese = japSupplier.isSelected();
-
-            // Collect supplier details
+            
+            // Save supplier details
             supplierId = supplierIdField.getText().trim();
             supplierName = supplierNameField.getText().trim();
             supplierEmail = supplierEmailField.getText().trim();
-
+        
             if (supplierId.isEmpty() || supplierName.isEmpty() || supplierEmail.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Please enter all supplier details.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Create DTO object
+            viewInfoButton.setEnabled(true);
+            mailButton.setEnabled(true);
+            saveButton.setEnabled(false);
+        
+            JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        });
+        
+        // View Info Button Action
+        viewInfoButton.addActionListener(e -> {
+            if (supplierId == null || supplierId.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "No data saved! Please save first.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        
             PlantFormDTO plantDetails = new PlantFormDTO(parmaList, editype, isJapanese);
-             plantInfoList = JsonReader.execute(plantDetails);
-
+            plantInfoList = JsonReader.execute(plantDetails);
+        
             String result = new PlantDisplayDTOCopy().showPlantInfo(plantInfoList, editype, isJapanese);
             showResultDialog(frame, result);
         });
+
+        // Submit Button Action
+        // submitButton.addActionListener(e -> {
+        //     parmaList.clear();
+        //     StringBuilder selectedPlants = new StringBuilder();
+
+        //     for (JCheckBox plant : plants) {
+        //         if (plant.isSelected()) {
+        //             String pl = plant.getText();
+        //             selectedPlants.append(pl).append(", ");
+        //             parmaList.add(new PARMA(Integer.parseInt(pl)));
+        //         }
+        //     }
+
+        //     if (selectedPlants.length() > 0) {
+        //         selectedPlants.setLength(selectedPlants.length() - 2);
+        //     } else {
+        //         selectedPlants.append("None");
+        //     }
+
+        //     String type = ediDropdown.getSelectedItem().toString();
+        //     editype = EDITYPE.valueOf(type);
+        //     isJapanese = japSupplier.isSelected();
+
+        //     // Collect supplier details
+        //     supplierId = supplierIdField.getText().trim();
+        //     supplierName = supplierNameField.getText().trim();
+        //     supplierEmail = supplierEmailField.getText().trim();
+
+        //     if (supplierId.isEmpty() || supplierName.isEmpty() || supplierEmail.isEmpty()) {
+        //         JOptionPane.showMessageDialog(frame, "Please enter all supplier details.", "Error", JOptionPane.ERROR_MESSAGE);
+        //         return;
+        //     }
+
+        //     // Create DTO object
+        //     PlantFormDTO plantDetails = new PlantFormDTO(parmaList, editype, isJapanese);
+        //      plantInfoList = JsonReader.execute(plantDetails);
+
+        //     String result = new PlantDisplayDTOCopy().showPlantInfo(plantInfoList, editype, isJapanese);
+        //     showResultDialog(frame, result);
+        // });
 
         // Clear Button Action
         clearButton.addActionListener(e -> {
@@ -185,6 +249,10 @@ public class EDIImplForm5 {
             parmaList.clear();
             isJapanese = false;
             editype = EDITYPE.TraditionalEDI;
+
+            viewInfoButton.setEnabled(false);
+            mailButton.setEnabled(false);
+            saveButton.setEnabled(true);
 
             // JOptionPane.showMessageDialog(frame, "Form Cleared!", "Submission Details", JOptionPane.INFORMATION_MESSAGE);
         });
@@ -201,11 +269,13 @@ public class EDIImplForm5 {
             }
 
             StringBuilder contactBuilder=new StringBuilder();
+            List<String> plantList = new ArrayList<>();
             List<String> plantDetails = new ArrayList<>();
 
             for(PlantDTO plant:plantInfoList){
 
                 // plant_details+=plant.getParma()+plant.getPlantName()+;
+                plantList.add(String.valueOf(plant.getParma()));
                 plantDetails.add(plant.getParma() + " – " + plant.getPlantName());
                 // plantStringBuilder.append();
                 
@@ -215,9 +285,10 @@ public class EDIImplForm5 {
                 // contactBuilder.append(String.join("; ", plant.getContactString()));
             }
             String contact=contactBuilder.toString();
-            String plant_details=String.join("; ", plantDetails);
-           
-            
+            String plant_details=String.join("; ", plantDetails); 
+            String plant_list=String.join(",", plantList);
+            // System.out.println(plant_details);   
+    
             // EmailSender.sendEmail();
             EmailSender.sendEmail(supplierId,supplierName,supplierEmail,contact,plant_details);
             
