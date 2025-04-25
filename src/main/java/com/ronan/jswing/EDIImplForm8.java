@@ -12,13 +12,12 @@ import com.ronan.dto.PlantDTO;
 import com.ronan.dto.PlantDisplayDTOCopy;
 import com.ronan.dto.PlantFormDTO;
 import com.ronan.entities.PARMA;
-import com.ronan.entities.Plant;
 import com.ronan.mailService.EmailSender_EDI;
 import com.ronan.mailService.EmailSender_WebEDI;
 import com.ronan.mailService.IEmailSender;
 import com.ronan.repositories.JsonReader;
 
-public class EDIImplForm7 {
+public class EDIImplForm8{
 
     private static List<PARMA> parmaList = new ArrayList<>();
     private static boolean isJapanese;
@@ -108,6 +107,8 @@ public class EDIImplForm7 {
             }
         }
 
+        
+
         // Checkbox for Japanese Supplier
         JCheckBox japSupplier = new JCheckBox("Japanese Supplier");
         japSupplier.setBounds(20, 210, 150, 20);
@@ -159,13 +160,18 @@ public class EDIImplForm7 {
         // frame.add(mailButton);
 
        japSupplier.addActionListener(new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        boolean isJapanese = japSupplier.isSelected();
-            // Disable invoice checkbox if it's a Japanese supplier
-        invoice.setEnabled(!isJapanese);
-    }
-});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean isJapanese = japSupplier.isSelected();
+                    // Disable invoice checkbox if it's a Japanese supplier
+                invoice.setEnabled(!isJapanese);
+            }
+        });
+
+// Shared listener to handle change
+
+// ----- Attach to Plant Checkboxes -----
+
 
         saveButton.addActionListener(e -> {
             parmaList.clear();
@@ -188,9 +194,9 @@ public class EDIImplForm7 {
                 return;
             }
 
-            viewInfoButton.setEnabled(true);
-            // mailButton.setEnabled(true);
-            saveButton.setEnabled(false);
+
+
+            toggleFields(supplierIdField, supplierNameField, supplierEmailField, ediDropdown, japSupplier, invoice, plants, viewInfoButton, saveButton, mailButton, false);
         
             JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
@@ -209,46 +215,7 @@ public class EDIImplForm7 {
             showResultDialog(frame, result);
         });
 
-        // Submit Button Action
-        // submitButton.addActionListener(e -> {
-        //     parmaList.clear();
-        //     StringBuilder selectedPlants = new StringBuilder();
-
-        //     for (JCheckBox plant : plants) {
-        //         if (plant.isSelected()) {
-        //             String pl = plant.getText();
-        //             selectedPlants.append(pl).append(", ");
-        //             parmaList.add(new PARMA(Integer.parseInt(pl)));
-        //         }
-        //     }
-
-        //     if (selectedPlants.length() > 0) {
-        //         selectedPlants.setLength(selectedPlants.length() - 2);
-        //     } else {
-        //         selectedPlants.append("None");
-        //     }
-
-        //     String type = ediDropdown.getSelectedItem().toString();
-        //     editype = EDITYPE.valueOf(type);
-        //     isJapanese = japSupplier.isSelected();
-
-        //     // Collect supplier details
-        //     supplierId = supplierIdField.getText().trim();
-        //     supplierName = supplierNameField.getText().trim();
-        //     supplierEmail = supplierEmailField.getText().trim();
-
-        //     if (supplierId.isEmpty() || supplierName.isEmpty() || supplierEmail.isEmpty()) {
-        //         JOptionPane.showMessageDialog(frame, "Please enter all supplier details.", "Error", JOptionPane.ERROR_MESSAGE);
-        //         return;
-        //     }
-
-        //     // Create DTO object
-        //     PlantFormDTO plantDetails = new PlantFormDTO(parmaList, editype, isJapanese);
-        //      plantInfoList = JsonReader.execute(plantDetails);
-
-        //     String result = new PlantDisplayDTOCopy().showPlantInfo(plantInfoList, editype, isJapanese);
-        //     showResultDialog(frame, result);
-        // });
+       
 
         // Clear Button Action
         clearButton.addActionListener(e -> {
@@ -262,11 +229,13 @@ public class EDIImplForm7 {
             supplierEmailField.setText("");
             parmaList.clear();
             isJapanese = false;
+            invoice.setSelected(false);
             editype = EDITYPE.TraditionalEDI;
 
             viewInfoButton.setEnabled(false);
             mailButton.setEnabled(false);
             saveButton.setEnabled(true);
+            toggleFields(supplierIdField, supplierNameField, supplierEmailField, ediDropdown, japSupplier, invoice, plants, viewInfoButton, saveButton, mailButton, true);
 
             // JOptionPane.showMessageDialog(frame, "Form Cleared!", "Submission Details", JOptionPane.INFORMATION_MESSAGE);
         });
@@ -336,48 +305,6 @@ public class EDIImplForm7 {
         frame.setVisible(true);
     }
 
-        
-    //     // Mail Button Action
-    //     mailButton.addActionListener(e -> {
-    //         supplierId = supplierIdField.getText().trim();
-    //         supplierName = supplierNameField.getText().trim();
-    //         supplierEmail = supplierEmailField.getText().trim();
-    //         String email = supplierEmailField.getText().trim();
-    //         if (email.isEmpty()) {
-    //             JOptionPane.showMessageDialog(frame, "Enter Supplier Email!", "Error", JOptionPane.ERROR_MESSAGE);
-    //             return;
-    //         }
-
-    //         StringBuilder contactBuilder=new StringBuilder();
-    //         List<String> plantList = new ArrayList<>();
-    //         List<String> plantDetails = new ArrayList<>();
-
-    //         for(PlantDTO plant:plantInfoList){
-
-    //             // plant_details+=plant.getParma()+plant.getPlantName()+;
-    //             plantList.add(String.valueOf(plant.getParma()));
-    //             plantDetails.add(plant.getParma() + " – " + plant.getPlantName());
-    //             // plantStringBuilder.append();
-                
-    //             contactBuilder.append(plant.getContactString());
-    //             contactBuilder.append("; ");
-
-    //             // contactBuilder.append(String.join("; ", plant.getContactString()));
-    //         }
-    //         String contact=contactBuilder.toString();
-    //         String plant_details=String.join("; ", plantDetails); 
-    //         String plant_list=String.join(",", plantList);
-    //         // System.out.println(plant_details);   
-    
-    //         // EmailSender.sendEmail();
-    //         EmailSender.sendEmail(supplierId,supplierName,supplierEmail,contact,plant_details);
-            
-    //         // JOptionPane.showMessageDialog(frame, "Mail Sent to  " + supplierEmail, "Email Status", JOptionPane.INFORMATION_MESSAGE);
-    //     });
-
-    //     frame.setVisible(true);
-    // }
-
     // Dialog to show result
     private static JDialog currentDialog;
 
@@ -412,4 +339,34 @@ public class EDIImplForm7 {
         textArea.append(result);
         dialog.setVisible(true);
     }
+
+    private static void toggleFields(
+    JTextField supplierIdField,
+    JTextField supplierNameField,
+    JTextField supplierEmailField,
+    JComboBox<String> ediDropdown,
+    JCheckBox japSupplier,
+    JCheckBox invoice,
+    JCheckBox[] plants,
+    JButton viewInfoButton,
+    JButton saveButton,
+    JButton mailButton,
+    boolean enabled
+) {
+    supplierIdField.setEnabled(enabled);
+    supplierNameField.setEnabled(enabled);
+    supplierEmailField.setEnabled(enabled);
+    ediDropdown.setEnabled(enabled);
+    japSupplier.setEnabled(enabled);
+    invoice.setEnabled(enabled);
+
+    for (JCheckBox plant : plants) {
+        plant.setEnabled(enabled);
+    }
+
+    viewInfoButton.setEnabled(!enabled);
+    // mailButton.setEnabled(enabled);
+    saveButton.setEnabled(enabled);
+}
+
 }

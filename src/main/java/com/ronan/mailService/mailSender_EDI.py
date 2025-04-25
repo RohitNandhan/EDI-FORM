@@ -19,7 +19,7 @@ def format_plants(plant_details):
     plant_list = plant_details.split(";")  # Double spaces used as separator
     return "<br>".join(plant_list)
 
-def send_email(recipient, parma_id, parma_name, contacts, plant_details, supplier_unb):
+def send_email(recipient, parma_id, parma_name, contacts, plant_details, supplier_unb,mail_sub,mail_body):
     try:
         # Set the correct path for the email template
         template_path = r"C:\Rohit P\PLE Cloning\edi-impl-app\mail templates\UD EDI DELFOR and DESADV in production request to test invoic.html"
@@ -52,7 +52,8 @@ def send_email(recipient, parma_id, parma_name, contacts, plant_details, supplie
                                .replace("{supplier_id}", parma_id) \
                                .replace(" {supplier_name} ", parma_name) \
                                .replace("{supplier_unb}", supplier_unb) \
-                               .replace("{Plant_details}", formated_plants)
+                               .replace("{Plant_details}", formated_plants) \
+                               .replace("{mail_body}", mail_body)
 
         # Connect to Outlook
         outlook = win32com.client.Dispatch("Outlook.Application")
@@ -70,7 +71,7 @@ def send_email(recipient, parma_id, parma_name, contacts, plant_details, supplie
         if contacts:
             mail.CC = contacts
         
-        mail.Subject = f"{parma_id} - {parma_name} -- Additional UD WebEDI Delivery Schedule and Despatch Advice in production"
+        mail.Subject = f"{parma_id} - {parma_name} -- {mail_sub}"
         mail.HTMLBody = email_body  
 
         # Attach File

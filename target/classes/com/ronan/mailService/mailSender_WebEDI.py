@@ -19,7 +19,8 @@ def format_plants(plant_details):
     plant_list = plant_details.split(";")  # Double spaces used as separator
     return "<br>".join(plant_list)
 
-def send_email(recipient, parma_id, parma_name, contacts, user_id, first_name, last_name, attachment_path,plant_details,webedi_phrase,edi_subject):
+# recipient, parma_id, parma_name, contacts, plant_details, attachment, mail_sub, mail_body
+def send_email(recipient, parma_id, parma_name, contacts, plant_details, attachment_path,mail_sub,mail_body):
     try:
         # Set the correct path for the email template
         template_path = r"C:\Rohit P\PLE Cloning\edi-impl-app\mail templates\Additional UD WebEDI Delivery Schedule and Despatch Advice in production2.html"
@@ -49,12 +50,11 @@ def send_email(recipient, parma_id, parma_name, contacts, user_id, first_name, l
         email_body = email_body.replace("{parma_id}", parma_id) \
                                .replace("{parma_name}", parma_name) \
                                .replace("{contacts}", contacts) \
-                               .replace("{user_id}", user_id) \
-                               .replace("{first_name}", first_name) \
-                               .replace("{last_name}", last_name) \
-                               .replace("{edi_subject}", edi_subject) \
-                               .replace("{webedi_phrase}", webedi_phrase) \
-                               .replace("{Plant_details}", formated_plants) 
+                               .replace("{Plant_details}", formated_plants) \
+                               .replace("{mail_body}", mail_body)
+                            #    .replace("{user_id}", user_id) \
+                            #    .replace("{first_name}", first_name) \
+                            #    .replace("{last_name}", last_name) \
 
         # Connect to Outlook
         outlook = win32com.client.Dispatch("Outlook.Application")
@@ -72,7 +72,7 @@ def send_email(recipient, parma_id, parma_name, contacts, user_id, first_name, l
         if contacts:
             mail.CC = contacts
         
-        mail.Subject = f"{parma_id} - {parma_name} -- {edi_subject}"
+        mail.Subject = f"{parma_id} - {parma_name} -- {mail_sub}"
         mail.HTMLBody = email_body  
 
         # Attach File

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import javax.swing.JTextField;
 
 
-public class EmailSender2 {
+public class EmailSender_EDI implements IEmailSender {
     static String pythonPath = "C:/Program Files/Python310/python.exe"; // Adjust Python path if needed
     // String scriptPath = "C:/Rohit P/Projects/EDI_PROJECT/email-format/email-format/python/py+java/mailsender.py";
     // String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailsender.py"; // Updated script path
@@ -15,6 +15,15 @@ public class EmailSender2 {
    static String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_EDI.py"; // Updated script path
    static String attachmentPath = "\"C:/Rohit P/PLE Cloning/Password Reset in Saviynt.docx\""; // Escaped path
 
+    String supplier_unb="000008030001043599:30:002920:DEFAULT";
+
+        // String edi_subject="NEWW";
+        String mail_body_new="The <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation";
+        String mail_body_add="The additional <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation.";
+
+       String mail_sub_new="UD EDI DELFOR and DESADV in production, request to test invoic";
+       String mail_sub_add="Additional UD EDI DELFOR and DESADV in production";
+       
     // static String user_id = "User123";
     // static String first_name = "John";
     // static String last_name = "Doe";
@@ -22,7 +31,7 @@ public class EmailSender2 {
    
     static ProcessBuilder processBuilder;
 
-public static void sendEmail() {
+public void sendEmail() {
       
         // String recipient = "rohit.p@capgemini.com";
         // String name = "Rohit";
@@ -41,11 +50,10 @@ public static void sendEmail() {
                         "8417 – TMBP Limited , \r\n" + //
                         "8431 – Volvo Group Singapore (Pte) Ltd";
 
-        String supplier_unb="000008030001043599:30:002920:DEFAULT";
-
-        String edi_subject="NEWW";
-        String edi_body="Hi  this NEW";
         
+
+        //The additional UD EDI DELFOR and DESADV is now set up for the below relation.
+        // 
         
 
         // try {
@@ -55,7 +63,7 @@ public static void sendEmail() {
         //         recipient, parma_id, parma_name, contacts, user_id, first_name, last_name, attachmentPath
         //     );
         try {
-             startProcess(recipient, parma_id, parma_name, contacts, plant_details, supplier_unb);
+             startProcess(recipient, parma_id, parma_name, contacts, plant_details, supplier_unb,mail_sub_add, mail_body_add);
             //  startProcess(recipient, parma_id, parma_name, contacts, plant_details, supplier_unb, edi_body,edi_subject);
         } catch (IOException | InterruptedException e) {
             System.out.println("❌ Error executing Python script: " + e.getMessage());
@@ -63,18 +71,18 @@ public static void sendEmail() {
     }
 
     // send_email(recipient, parma_id, parma_name, contacts,plant_details, supplier_unb)
-    public static void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,String plant_details, String supplier_unb, String edi_body, String edi_subject) {
+    public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,String plant_details, String supplier_unb, String mail_sub, String mail_body) {
         try {
-            startProcess(supplierEmail, supplierId, supplierName, contact, plant_details, supplier_unb);
+            // startProcess(supplierEmail, supplierId, supplierName, contact, plant_details, supplier_unb);
+            startProcess(supplierEmail, supplierId, supplierName, contact, plant_details, supplier_unb, mail_sub,mail_body);
        } catch (IOException | InterruptedException e) {
            System.out.println("❌ Error executing Python script: " + e.getMessage());
        }
-    
     }
 
-    public static void startProcess(String recipient,String parma_id,String parma_name, String contacts, String plant_details, String supplier_unb) throws IOException, InterruptedException{
+    public static void startProcess(String recipient,String parma_id,String parma_name, String contacts, String plant_details, String supplier_unb, String mail_sub, String mail_body ) throws IOException, InterruptedException{
         processBuilder = new ProcessBuilder(
-                pythonPath, scriptPath,recipient, parma_id, parma_name, contacts, plant_details, supplier_unb
+                pythonPath, scriptPath,recipient, parma_id, parma_name, contacts, plant_details, supplier_unb, mail_sub, mail_body
                     );
             processBuilder.redirectErrorStream(true);
 
@@ -84,9 +92,17 @@ public static void sendEmail() {
     }
 
     public static void main(String[] args) {
-        sendEmail();
+        new EmailSender_EDI().sendEmail();
     }
 
-   
+    @Override
+    public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,
+            String plant_details, boolean edi_new) {
+       if(edi_new){
+            sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, supplier_unb,mail_sub_new , mail_body_new);
+        }else{
+            sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, supplier_unb,mail_sub_add , mail_body_add);
+        }
+    }
 
 }
