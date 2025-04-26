@@ -7,7 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ronan.dto.PlantDTO;
 
-public class JsonToJavaDeserializer2 {
+public class JsonToJavaDeserializer {
 
     // static String jsonFile="src/main/resources/plant-json-mapping.json";
     static String jsonFile="plant-info-new.json";
@@ -21,7 +21,7 @@ public class JsonToJavaDeserializer2 {
             ObjectMapper objectMapper = new ObjectMapper();
             
             // Load JSON from resources using getResourceAsStream()
-            InputStream inputStream = JsonToJavaDeserializer2.class.getClassLoader().getResourceAsStream(jsonFile);
+            InputStream inputStream = JsonToJavaDeserializer.class.getClassLoader().getResourceAsStream(jsonFile);
             if (inputStream == null) {
                 throw new RuntimeException("Resource file '" + jsonFile + "' not found!");
             }

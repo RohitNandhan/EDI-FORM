@@ -5,7 +5,6 @@ import java.util.List;
 public interface IEmailSender {
 
     String pythonPath = "C:/Program Files/Python310/python.exe";
-    static String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_IEDI.py"; // Updated script path
     static String attachmentPath = "\"C:/Rohit P/PLE Cloning/Password Reset in Saviynt.docx\""; // Escaped path
 
 

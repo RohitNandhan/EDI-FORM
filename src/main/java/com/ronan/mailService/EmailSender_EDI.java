@@ -9,24 +9,21 @@ import javax.swing.JTextField;
 
 
 public class EmailSender_EDI implements IEmailSender {
-    // static String pythonPath = "C:/Rohit P/PLE Cloning/edi-impl-app/Python310/python.exe"; // Adjust Python path if needed
-    // String scriptPath = "C:/Rohit P/Projects/EDI_PROJECT/email-format/email-format/python/py+java/mailsender.py";
-    // String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailsender.py"; // Updated script path
+
+    static String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_IEDI.py"; // Updated script path
     
-//    static String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_IEDI.py"; // Updated script path
-//    static String attachmentPath = "\"C:/Rohit P/PLE Cloning/Password Reset in Saviynt.docx\""; // Escaped path
+   
+            String supplier_unb="000008030001043599:30:002920:DEFAULT";
 
-    String supplier_unb="000008030001043599:30:002920:DEFAULT";
+                // String edi_subject="NEWW";
+            String mail_body_new="The <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation";
+            String mail_body_add="The additional <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation.";
 
-        // String edi_subject="NEWW";
-        String mail_body_new="The <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation";
-        String mail_body_add="The additional <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation.";
+            String mail_sub_new="UD EDI DELFOR and DESADV in production";
+            String mail_sub_add="Additional UD EDI DELFOR and DESADV in production";
 
-       String mail_sub_new="UD EDI DELFOR and DESADV in production";
-       String mail_sub_add="Additional UD EDI DELFOR and DESADV in production";
-
-       String mail_sub="";
-       String mail_body="";
+            String mail_sub="";
+            String mail_body="";
 
        
     String invoic_template="C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/resources/mail templates/UD EDI DELFOR and DESADV in production request to test invoic.html";
@@ -132,7 +129,6 @@ public void sendEmail() {
         
     }
 
-    
 
     @Override
     public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,

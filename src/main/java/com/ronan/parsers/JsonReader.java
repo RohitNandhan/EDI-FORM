@@ -1,4 +1,4 @@
-package com.ronan.repositories;
+package com.ronan.parsers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,6 @@ import java.util.Map;
 import com.ronan.dto.PlantDTO;
 import com.ronan.dto.PlantFormDTO;
 import com.ronan.entities.PARMA;
-import com.ronan.parsers.JsonToJavaDeserializer2;
 
 public class JsonReader {
     private static Map<Integer,PlantDTO> plantMap=new HashMap<>();
@@ -48,7 +47,7 @@ public class JsonReader {
         // List<Plant> plantList=JsonParser.parseJson(jsonData);
         // System.out.println("JSON Content: \n" + plantList);
 
-        List<PlantDTO> plantDTOs=JsonToJavaDeserializer2.deserialization();
+        List<PlantDTO> plantDTOs=JsonToJavaDeserializer.deserialization();
 
 
         for(PlantDTO plant:plantDTOs){

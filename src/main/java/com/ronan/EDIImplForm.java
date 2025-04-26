@@ -1,4 +1,4 @@
-package com.ronan.jswing;
+package com.ronan;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,15 +9,15 @@ import javax.swing.*;
 
 import com.ronan.Utils.EDITYPE;
 import com.ronan.dto.PlantDTO;
-import com.ronan.dto.PlantDisplayDTOCopy;
+import com.ronan.dto.PlantDisplayDTO;
 import com.ronan.dto.PlantFormDTO;
 import com.ronan.entities.PARMA;
 import com.ronan.mailService.EmailSender_EDI;
 import com.ronan.mailService.EmailSender_WebEDI;
 import com.ronan.mailService.IEmailSender;
-import com.ronan.repositories.JsonReader;
+import com.ronan.parsers.JsonReader;
 
-public class EDIImplForm8{
+public class EDIImplForm{
 
     private static List<PARMA> parmaList = new ArrayList<>();
     private static boolean isJapanese;
@@ -106,8 +106,6 @@ public class EDIImplForm8{
                 y += 20;
             }
         }
-
-        
 
         // Checkbox for Japanese Supplier
         JCheckBox japSupplier = new JCheckBox("Japanese Supplier");
@@ -221,7 +219,7 @@ public class EDIImplForm8{
             PlantFormDTO plantDetails = new PlantFormDTO(parmaList, editype, isJapanese);
             plantInfoList = JsonReader.execute(plantDetails);
             mailButton.setEnabled(true);
-            String result = new PlantDisplayDTOCopy().showPlantInfo(plantInfoList, editype, isJapanese);
+            String result = new PlantDisplayDTO().showPlantInfo(plantInfoList, editype, isJapanese);
             showResultDialog(frame, result);
         });
 

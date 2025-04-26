@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EDIImplForm",
+            "request": "launch",
+            "mainClass": "com.ronan.EDIImplForm",
+            "projectName": "edi-impl"
+        },
+        {
+            "type": "java",
             "name": "EDIImplForm8",
             "request": "launch",
             "mainClass": "com.ronan.jswing.EDIImplForm8",

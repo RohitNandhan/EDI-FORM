@@ -13,15 +13,9 @@ public class EmailSender_WebEDI implements IEmailSender {
     // String scriptPath = "C:/Rohit P/Projects/EDI_PROJECT/email-format/email-format/python/py+java/mailsender.py";
     // String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailsender.py"; // Updated script path
     
-    // String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_IWebEDI.py"; // Updated script path
+    String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_IWebEDI.py"; // Updated script path
     // String attachmentPath = "\"C:/Rohit P/PLE Cloning/Password Reset in Saviynt.docx\""; // Escaped path
 
-    
-
-     String user_id = "User123";
-     String first_name = "John";
-     String last_name = "Doe";
-    //  String plant_details="2920,2921";
 
     String mail_body="";
     String mail_sub="";
@@ -39,7 +33,7 @@ public class EmailSender_WebEDI implements IEmailSender {
     String plantList;
 
      ProcessBuilder processBuilder;
-
+/* 
 public void sendEmail() {
       
         // String recipient = "rohit.p@capgemini.com";
@@ -73,43 +67,21 @@ public void sendEmail() {
             System.out.println("❌ Error executing Python script: " + e.getMessage());
         }
     }
+        **/
 
     
-    // public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,String plant_details) {
-    //     try {
-    //         startProcess(supplierEmail, supplierId, supplierName, contact, user_id, first_name, last_name, attachmentPath, plant_details);
-    //    } catch (IOException | InterruptedException e) {
-    //        System.out.println("❌ Error executing Python script: " + e.getMessage());
-    //    }
-    
+
+    // private  void startProcess(String recipient,String parma_id,String parma_name, String contacts,String user_id,String first_name,String last_name,String attachmentPath,String plant_details) throws IOException, InterruptedException{
+    //     processBuilder = new ProcessBuilder(
+    //             pythonPath, scriptPath,recipient, parma_id, parma_name, contacts, user_id, first_name, last_name, attachmentPath, plant_details
+    //                 );
+    //         processBuilder.redirectErrorStream(true);
+
+    //         Process process = processBuilder.start();
+    //         process.waitFor();
+    //         System.out.println("✅ Email process completed.");
     // }
-
-    private  void startProcess(String recipient,String parma_id,String parma_name, String contacts,String user_id,String first_name,String last_name,String attachmentPath,String plant_details) throws IOException, InterruptedException{
-        processBuilder = new ProcessBuilder(
-                pythonPath, scriptPath,recipient, parma_id, parma_name, contacts, user_id, first_name, last_name, attachmentPath, plant_details
-                    );
-            processBuilder.redirectErrorStream(true);
-
-            Process process = processBuilder.start();
-            process.waitFor();
-            System.out.println("✅ Email process completed.");
-    }
-
    
-    // public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact, String user_id,
-    //         String plant_details, String supplier_unb, String mail_sub, String mail_body) {
-    //             processBuilder = new ProcessBuilder(
-    //                 pythonPath, scriptPath,supplierEmail, supplierId, supplierName, contacts, user_id, first_name, last_name, attachmentPath, plant_details
-    //                     );
-    //             processBuilder.redirectErrorStream(true);
-    
-    //             Process process = processBuilder.start();
-    //             process.waitFor();
-    //             System.out.println("✅ Email process completed.");
-    // }
-    
-
-
     public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,String plant_details, String attachment, String mail_sub, String mail_body) {
         try {
             // startProcess(supplierEmail, supplierId, supplierName, contact, plant_details, supplier_unb);
@@ -151,10 +123,7 @@ public void sendEmail() {
     }    
     
 
-    public static void main(String[] args) {
-        new EmailSender_WebEDI().createMail();;
-    }
-
+    // for creating new user mail
     public void createMail(){
         String TemplatePath="C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/resources/mail templates/Create ID for new Web EDI user.html";
        
@@ -188,6 +157,9 @@ public void sendEmail() {
     }
 
 
+    // public static void main(String[] args) {
+    //     new EmailSender_WebEDI().createMail();
+    // }
     
 
    
