@@ -151,8 +151,14 @@ public class EDIImplForm8{
 
         // Clear Button
         JButton clearButton = new JButton("Clear");
-        clearButton.setBounds(320, 190, 70, 25);
+        clearButton.setBounds(330, 170, 70, 25);
         frame.add(clearButton);
+
+        JButton userMailButton = new JButton("new ID");
+        userMailButton.setBounds(320, 220, 100, 25);
+        frame.add(userMailButton);
+        userMailButton.setVisible(false);
+        
 
         // New Mail Button
         // JButton mailButton = new JButton("Send Mail");
@@ -197,7 +203,11 @@ public class EDIImplForm8{
 
 
             toggleFields(supplierIdField, supplierNameField, supplierEmailField, ediDropdown, japSupplier, invoice, plants, viewInfoButton, saveButton, mailButton, false);
-        
+            
+            // editype = EDITYPE.valueOf(ediDropdown.getSelectedItem().toString());
+             userMailButton.setVisible(editype==EDITYPE.WebEDI);
+
+
             JOptionPane.showMessageDialog(frame, "Data saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
         });
         
@@ -234,17 +244,25 @@ public class EDIImplForm8{
 
             viewInfoButton.setEnabled(false);
             mailButton.setEnabled(false);
+            // mailButton.setVisible(false);
             saveButton.setEnabled(true);
+            userMailButton.setVisible(false);
             toggleFields(supplierIdField, supplierNameField, supplierEmailField, ediDropdown, japSupplier, invoice, plants, viewInfoButton, saveButton, mailButton, true);
 
             // JOptionPane.showMessageDialog(frame, "Form Cleared!", "Submission Details", JOptionPane.INFORMATION_MESSAGE);
         });
+
+        userMailButton.addActionListener(e -> {
+            new EmailSender_WebEDI().createMail(); 
+        });
+
 
         mailButton.addActionListener(e -> {
             supplierId = supplierIdField.getText().trim();
             supplierName = supplierNameField.getText().trim();
             supplierEmail = supplierEmailField.getText().trim();
             String email = supplierEmailField.getText().trim();
+            boolean invoic = invoice.isSelected();
         
             if (email.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Enter Supplier Email!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -267,6 +285,8 @@ public class EDIImplForm8{
             }
         
             StringBuilder contactBuilder = new StringBuilder();
+            // contactBuilder.append(supplierEmail).append(";");
+
             List<String> plantList = new ArrayList<>();
             List<String> plantDetails = new ArrayList<>();
         
@@ -275,10 +295,17 @@ public class EDIImplForm8{
                 plantDetails.add(plant.getParma() + " – " + plant.getPlantName());
                 contactBuilder.append(plant.getContactString());
                 contactBuilder.append("; ");
+                if(editype==EDITYPE.TraditionalEDI && invoic ){
+                    contactBuilder.append(plant.getInvoiceContactString());
+                    contactBuilder.append("; ");
+
+                }
+                
             }
         
             String contact = contactBuilder.toString();
             String plant_details = String.join("; ", plantDetails);
+            String plant_list = String.join(", ", plantList);
             IEmailSender emailSender;
             boolean edi_new;
             if(editype.equals(EDITYPE.TraditionalEDI)){
@@ -295,8 +322,11 @@ public class EDIImplForm8{
                 // New 
                 edi_new=true;
             }
+            
+            emailSender.sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details,edi_new,invoic, plant_list);
+           
 
-            emailSender.sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details,edi_new);
+            // emailSender.sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details,edi_new,invoic);
             // emailSender.sendEmail(plant_details, plant_details, email, contact, plant_details, plant_details, edi_new);
         
             // JOptionPane.showMessageDialog(frame, "Mail Sent to  " + supplierEmail, "Email Status", JOptionPane.INFORMATION_MESSAGE);
@@ -359,6 +389,8 @@ public class EDIImplForm8{
     ediDropdown.setEnabled(enabled);
     japSupplier.setEnabled(enabled);
     invoice.setEnabled(enabled);
+
+    
 
     for (JCheckBox plant : plants) {
         plant.setEnabled(enabled);

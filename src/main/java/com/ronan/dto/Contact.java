@@ -36,6 +36,10 @@ public class Contact {
         return emails.stream().collect(Collectors.joining(";"));
     }
 
+    public String getEmailString(List<String> emails){
+        return emails.stream().collect(Collectors.joining(";"));
+    }
+
     public void setEmails(List<String> emails) {
         this.emails = emails;
     }

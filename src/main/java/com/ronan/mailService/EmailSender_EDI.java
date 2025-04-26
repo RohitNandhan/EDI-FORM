@@ -3,17 +3,18 @@ package com.ronan.mailService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import javax.swing.JTextField;
 
 
 public class EmailSender_EDI implements IEmailSender {
-    static String pythonPath = "C:/Program Files/Python310/python.exe"; // Adjust Python path if needed
+    // static String pythonPath = "C:/Rohit P/PLE Cloning/edi-impl-app/Python310/python.exe"; // Adjust Python path if needed
     // String scriptPath = "C:/Rohit P/Projects/EDI_PROJECT/email-format/email-format/python/py+java/mailsender.py";
     // String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailsender.py"; // Updated script path
     
-   static String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_EDI.py"; // Updated script path
-   static String attachmentPath = "\"C:/Rohit P/PLE Cloning/Password Reset in Saviynt.docx\""; // Escaped path
+//    static String scriptPath = "C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/java/com/ronan/mailService/mailSender_IEDI.py"; // Updated script path
+//    static String attachmentPath = "\"C:/Rohit P/PLE Cloning/Password Reset in Saviynt.docx\""; // Escaped path
 
     String supplier_unb="000008030001043599:30:002920:DEFAULT";
 
@@ -21,8 +22,20 @@ public class EmailSender_EDI implements IEmailSender {
         String mail_body_new="The <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation";
         String mail_body_add="The additional <b>UD EDI DELFOR</b> and <b>DESADV</b> is now set up for the below relation.";
 
-       String mail_sub_new="UD EDI DELFOR and DESADV in production, request to test invoic";
+       String mail_sub_new="UD EDI DELFOR and DESADV in production";
        String mail_sub_add="Additional UD EDI DELFOR and DESADV in production";
+
+       String mail_sub="";
+       String mail_body="";
+
+       
+    String invoic_template="C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/resources/mail templates/UD EDI DELFOR and DESADV in production request to test invoic.html";
+    String non_invoic_template="C:/Rohit P/PLE Cloning/edi-impl-app/EDI-FORM/src/main/resources/mail templates/UD EDI DELFOR and DESADV in production.html";
+    
+    String template_path=non_invoic_template;
+
+     String plantList;
+
        
     // static String user_id = "User123";
     // static String first_name = "John";
@@ -80,9 +93,9 @@ public void sendEmail() {
        }
     }
 
-    public static void startProcess(String recipient,String parma_id,String parma_name, String contacts, String plant_details, String supplier_unb, String mail_sub, String mail_body ) throws IOException, InterruptedException{
+    public void startProcess(String recipient,String parma_id,String parma_name, String contacts, String plant_details, String supplier_unb, String mail_sub, String mail_body ) throws IOException, InterruptedException{
         processBuilder = new ProcessBuilder(
-                pythonPath, scriptPath,recipient, parma_id, parma_name, contacts, plant_details, supplier_unb, mail_sub, mail_body
+                pythonPath, scriptPath,recipient, parma_id, parma_name, contacts, plant_details, supplier_unb, mail_sub, mail_body, template_path, plantList
                     );
             processBuilder.redirectErrorStream(true);
 
@@ -97,12 +110,36 @@ public void sendEmail() {
 
     @Override
     public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,
-            String plant_details, boolean edi_new) {
+            String plant_details, boolean edi_new, boolean invoic) {
+                
        if(edi_new){
-            sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, supplier_unb,mail_sub_new , mail_body_new);
+            mail_body=mail_body_new;
+            mail_sub=mail_sub_new;
+            // sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, supplier_unb,mail_sub_new , mail_body_new);
         }else{
-            sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, supplier_unb,mail_sub_add , mail_body_add);
+            mail_body=mail_body_add;
+            mail_sub=mail_sub_add;
+            // sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, supplier_unb,mail_sub_add , mail_body_add);
+        }    
+        if(invoic){
+            template_path=invoic_template;
+            mail_sub=mail_sub+", request to test invoic";
+        }else{
+            template_path=non_invoic_template;
         }
+        
+        sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, supplier_unb,mail_sub , mail_body);
+        
+    }
+
+    
+
+    @Override
+    public void sendEmail(String supplierId, String supplierName, String supplierEmail, String contact,
+            String plant_details, boolean edi_new, boolean invoic, String plantList) {
+        
+                this.plantList=plantList;
+                sendEmail(supplierId, supplierName, supplierEmail, contact, plant_details, edi_new, invoic);
     }
 
 }

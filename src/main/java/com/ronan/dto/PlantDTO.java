@@ -51,6 +51,11 @@ public class PlantDTO {
         return contact.getEmailString();
     }
 
+    public String getInvoiceContactString(){
+        return contact.getEmailString(contact.getInvoiceEmails());
+    
+    }
+
     public void setContact(Contact contact) {
         this.contact = contact;
     }
